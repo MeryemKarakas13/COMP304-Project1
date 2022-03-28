@@ -612,45 +612,19 @@ int runcdh() {
 	
 }
 int runJoker() {
-	/*FILE * fp;
-	pid_t pid;
-	fp = fopen("cronFile.txt","w");*/
-	//fprintf(fp,"%s ","*/1 * * * * /usr/bin/notify-send \"$(/bin/curl https://icanhazdadjoke.com/)\"\n ");
-	/*fclose (fp);
-	
-	pid = fork();
-	if (pid < 0) {
-		fprintf(stderr, "Fork failed");
-		return 1;
-	}
-	if (pid == 0) {
-		
-		
-		char *crontab_args[] = {"/usr/bin/crontab", "cronFile.txt", 0};
-        	execv(crontab_args[0], crontab_args);	
-		
-		
-		
-	}else {
-		wait(&pid);
-	}*/
 	FILE * fp;
-   	int i;
-	char *hour = "0";
-        char *minute = "1";
-
-
+   
 	/* open the file for writing*/
    	fp = fopen("cronFile.txt","w");
-	fprintf(fp,"%s","* * * * * XDG_RUNTIME_DIR=/run/user/$(id -u) usr/bin/notify-send \"hi\"\n ");
+	fprintf(fp,"%s","*/15 * * * * XDG_RUNTIME_DIR=/run/user/$(id -u) /usr/bin/notify-send \"$(/bin/curl https://icanhazdadjoke.com/)\"\n ");
    	fclose (fp);
    	//executes the crontab.
-	pid_t childProcess=fork();
-	if(childProcess==0){	
+	pid_t pid=fork();
+	if(pid==0){	
 		char *cronArgs[] = { "/usr/bin/crontab", "cronFile.txt", 0 };
    		execv(cronArgs[0], cronArgs);	
 	}else{
-		wait(&childProcess);
+		wait(&pid);
 	}
 	return 0;
 }
