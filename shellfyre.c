@@ -463,6 +463,7 @@ int process_command(struct command_t *command)
 
 
 int runTake(char** args){
+
 	char * token = strtok(args[0], "/");
    
         while( token != NULL ) {
@@ -474,6 +475,7 @@ int runTake(char** args){
 	return 0;
 }
 int chronometer(char** args){
+
 	int seconds = atoi(args[0]);
 	printf("\nNow It Starts\n");
 	while(seconds != 0) {
@@ -486,6 +488,7 @@ int chronometer(char** args){
 }
 
 int filesearch(char** args){
+
 	DIR *d;
 	struct dirent *dir;
 	d = opendir(".");
@@ -556,6 +559,7 @@ int filesearch(char** args){
 }
 
 int runcdh() {
+
 	char letter = 'k';
 	for(int t=9;t>=0;t--){
 	        letter--;
@@ -629,6 +633,7 @@ int runJoker() {
 	return 0;
 }
 int calculator(char** args){
+
    	int num1 = atoi(args[0]);
    	int num2 = atoi(args[2]);
         if(strcmp(args[1],"+") ==0){
